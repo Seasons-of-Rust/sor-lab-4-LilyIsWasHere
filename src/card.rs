@@ -15,7 +15,7 @@ impl Card {
             (true, true) => FightResult::Tie,
             (false, false) => FightResult::Draw,
             (true, false) => FightResult::Win,
-            (false, true) => FightResult::Loss
+            (false, true) => FightResult::Loss,
         }
     }
 

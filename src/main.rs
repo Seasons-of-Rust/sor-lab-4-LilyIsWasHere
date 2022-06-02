@@ -13,7 +13,7 @@ pub enum FightResult {
     Win,
     Loss,
     Draw,
-    Tie
+    Tie,
 }
 
 fn main() {
