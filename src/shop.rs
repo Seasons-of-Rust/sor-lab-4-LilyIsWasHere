@@ -1,3 +1,4 @@
+use std::cmp::Ordering;
 use std::fmt;
 
 use crate::{card::Card, FightResult};
@@ -26,7 +27,23 @@ impl Shop {
     /// this store wins, FightResult::Loss if this store loses, and a
     /// FightResult::Tie if both stores win the same number of battles.
     pub fn fight_store(&self, other: &Shop) -> FightResult {
-        todo!()
+        let mut wins = 0;
+        let mut losses = 0;
+        for self_card in &self.cards {
+            for other_card in &other.cards {
+                let result: FightResult = self_card.print_fight(other_card);
+                match result {
+                    FightResult::Win => wins += 1,
+                    FightResult::Loss => losses += 1,
+                    _ => (),
+                }
+            }
+        }
+        match wins.cmp(&losses) {
+            Ordering::Greater => FightResult::Win,
+            Ordering::Less => FightResult::Loss,
+            Ordering::Equal => FightResult::Tie,
+        }
     }
 }
 
